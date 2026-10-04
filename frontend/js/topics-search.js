@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api";
+const API_URL = "https://aptiprep-1zyu.onrender.com/api";
 
 document.addEventListener("DOMContentLoaded", async () => {
 
