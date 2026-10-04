@@ -1,0 +1,1133 @@
+/* =========================================================
+   APTIPREP - RESPONSIVE CSS
+   Keeps existing design
+   Desktop + Tablet + Mobile
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   DESKTOP
+   Existing layout stays normal
+   ========================================================= */
+
+@media (min-width: 1101px) {
+
+    .dashboard-layout {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+    }
+
+    .sidebar {
+        width: 245px;
+        min-width: 245px;
+        flex-shrink: 0;
+    }
+
+    .main-content {
+        width: calc(100% - 245px);
+        min-width: 0;
+        padding: 35px 40px;
+    }
+
+    .dashboard-grid,
+    .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .company-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+}
+
+
+/* =========================================================
+   LAPTOP / SMALL DESKTOP
+   769px - 1100px
+   ========================================================= */
+
+@media (min-width: 769px) and (max-width: 1100px) {
+
+    .dashboard-layout {
+        display: flex;
+        width: 100%;
+    }
+
+    .sidebar {
+        width: 215px;
+        min-width: 215px;
+        flex-shrink: 0;
+    }
+
+    .main-content {
+        width: calc(100% - 215px);
+        min-width: 0;
+        padding: 28px 24px;
+    }
+
+    .dashboard-grid,
+    .practice-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .company-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .hero-banner {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .hero-art,
+    .hero-illustration {
+        transform: scale(.82);
+        transform-origin: right center;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   601px - 768px
+   Sidebar becomes top menu
+   ========================================================= */
+
+@media (min-width: 601px) and (max-width: 768px) {
+
+    body {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .dashboard-layout {
+        display: block !important;
+        width: 100%;
+    }
+
+
+    /* -----------------------------------------
+       SIDEBAR
+       ----------------------------------------- */
+
+    .sidebar {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+
+        position: relative !important;
+        top: auto !important;
+
+        padding: 15px !important;
+
+        border-right: none !important;
+        border-bottom: 1px solid #e7e9f2;
+    }
+
+    .brand {
+        padding: 0 5px 15px !important;
+    }
+
+    .sidebar-nav {
+        width: 100%;
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
+        gap: 7px !important;
+    }
+
+    .sidebar-nav .nav-item {
+        width: 100%;
+
+        justify-content: center;
+
+        padding: 11px 6px !important;
+
+        text-align: center;
+
+        font-size: 11px;
+    }
+
+    .sidebar-nav .nav-icon {
+        width: auto !important;
+        font-size: 16px !important;
+    }
+
+    .sidebar-bottom {
+        margin-top: 10px;
+    }
+
+    .sidebar-quote {
+        display: none;
+    }
+
+
+    /* -----------------------------------------
+       MAIN
+       ----------------------------------------- */
+
+    .main-content {
+        width: 100% !important;
+        min-width: 0 !important;
+
+        padding: 24px 20px;
+    }
+
+
+    /* -----------------------------------------
+       HEADER
+       ----------------------------------------- */
+
+    .top-header {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+
+        gap: 15px;
+    }
+
+
+    /* -----------------------------------------
+       HERO
+       ----------------------------------------- */
+
+    .hero-banner {
+        width: 100%;
+
+        padding: 28px;
+
+        overflow: hidden;
+    }
+
+    .hero-art,
+    .hero-illustration {
+        transform: scale(.72);
+        transform-origin: right center;
+    }
+
+
+    /* -----------------------------------------
+       CARDS
+       ----------------------------------------- */
+
+    .dashboard-grid,
+    .practice-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 15px;
+    }
+
+    .company-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 15px;
+    }
+
+
+    /* -----------------------------------------
+       FORMS
+       ----------------------------------------- */
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   600px AND BELOW
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    html {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       MAIN LAYOUT
+       ===================================================== */
+
+    .dashboard-layout {
+        display: block !important;
+
+        width: 100%;
+
+        min-height: 100vh;
+    }
+
+
+    /* =====================================================
+       SIDEBAR
+       Clean top navigation
+       ===================================================== */
+
+    .sidebar {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        height: auto !important;
+
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+
+        padding: 13px 12px !important;
+
+        background: #ffffff;
+
+        border-right: none !important;
+        border-bottom: 1px solid #e7e9f2;
+
+        overflow: visible !important;
+    }
+
+
+    /* Brand */
+
+    .brand {
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        padding:
+            2px 5px 14px !important;
+    }
+
+    .brand strong {
+        font-size: 20px;
+    }
+
+    .brand small {
+        font-size: 9px;
+    }
+
+
+    /* Navigation */
+
+    .sidebar-nav {
+        width: 100%;
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
+        gap: 6px !important;
+
+        overflow: visible !important;
+    }
+
+    .sidebar-nav .nav-item {
+        width: 100% !important;
+
+        min-width: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 6px;
+
+        padding:
+            10px 5px !important;
+
+        border-radius: 9px;
+
+        font-size: 10px;
+
+        white-space: normal !important;
+
+        text-align: center;
+    }
+
+    .sidebar-nav .nav-item .nav-icon {
+        width: auto !important;
+
+        font-size: 15px;
+    }
+
+
+    /* Active */
+
+    .sidebar-nav .nav-item.active {
+        background: #eeeeff;
+    }
+
+
+    /* Quote */
+
+    .sidebar-quote {
+        display: none !important;
+    }
+
+
+    /* Logout */
+
+    .sidebar-bottom {
+        width: 100%;
+
+        margin-top: 7px;
+    }
+
+    .logout-link,
+    .logout-button {
+        width: 100% !important;
+
+        justify-content: center;
+
+        padding: 9px !important;
+
+        font-size: 11px;
+    }
+
+
+    /* =====================================================
+       MAIN CONTENT
+       ===================================================== */
+
+    .main-content {
+        width: 100% !important;
+
+        max-width: 100%;
+
+        min-width: 0 !important;
+
+        padding:
+            18px 14px 24px !important;
+    }
+
+
+    /* =====================================================
+       TOP HEADER
+       ===================================================== */
+
+    .top-header {
+        width: 100%;
+
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        margin-bottom: 18px;
+    }
+
+    .welcome-text {
+        flex: 1;
+
+        min-width: 0;
+    }
+
+    .eyebrow {
+        font-size: 8px !important;
+
+        letter-spacing: 1.2px;
+    }
+
+    .top-header h1 {
+        font-size: 20px !important;
+
+        line-height: 1.35;
+
+        letter-spacing: -.5px;
+
+        margin: 0;
+    }
+
+    .welcome-subtitle {
+        font-size: 11px !important;
+
+        line-height: 1.6;
+
+        margin-top: 5px;
+    }
+
+    .profile-chip {
+        flex-shrink: 0;
+
+        padding: 5px !important;
+
+        border-radius: 50%;
+    }
+
+    .profile-chip span:not(.profile-avatar) {
+        display: none;
+    }
+
+    .profile-avatar {
+        width: 34px;
+
+        height: 34px;
+
+        display: grid;
+
+        place-items: center;
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero-banner {
+        width: 100%;
+
+        min-height: auto !important;
+
+        padding:
+            22px 18px !important;
+
+        border-radius: 16px;
+
+        display: block !important;
+
+        overflow: hidden;
+    }
+
+    .hero-content {
+        width: 100%;
+
+        max-width: 100% !important;
+    }
+
+    .hero-label {
+        font-size: 8px;
+
+        padding: 6px 9px;
+    }
+
+    .hero-content h2 {
+        font-size: 27px !important;
+
+        line-height: 1.2;
+
+        margin:
+            11px 0 8px;
+    }
+
+    .hero-content p {
+        width: 100%;
+
+        max-width: 100% !important;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+
+        margin-bottom: 16px;
+    }
+
+    .hero-button {
+        display: inline-flex;
+
+        min-height: 43px;
+
+        padding:
+            10px 14px;
+
+        border-radius: 10px;
+
+        font-size: 12px;
+    }
+
+    .hero-art,
+    .hero-illustration {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       SECTION HEADING
+       ===================================================== */
+
+    .section-heading {
+        width: 100%;
+
+        display: flex;
+
+        align-items: flex-start;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        margin-bottom: 13px;
+    }
+
+    .section-kicker {
+        font-size: 8px !important;
+
+        letter-spacing: 1.2px;
+    }
+
+    .section-heading h2 {
+        font-size: 20px !important;
+
+        line-height: 1.3;
+
+        margin-top: 5px;
+    }
+
+    .section-heading p {
+        font-size: 11px;
+
+        line-height: 1.6;
+    }
+
+
+    /* =====================================================
+       PRACTICE GRID
+       ===================================================== */
+
+    .dashboard-grid,
+    .practice-grid {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 11px !important;
+    }
+
+    .practice-card {
+        width: 100% !important;
+
+        min-width: 0 !important;
+
+        min-height: auto !important;
+
+        padding: 16px !important;
+
+        border-radius: 14px;
+    }
+
+
+    /* Card icon */
+
+    .card-icon {
+        width: 41px !important;
+
+        height: 41px !important;
+
+        min-width: 41px !important;
+
+        border-radius: 11px;
+    }
+
+
+    /* Card text */
+
+    .practice-card h3 {
+        font-size: 14px;
+
+        line-height: 1.4;
+    }
+
+    .practice-card p {
+        font-size: 11px;
+
+        line-height: 1.65;
+
+        overflow-wrap: break-word;
+    }
+
+    .card-footer {
+        font-size: 10px;
+    }
+
+
+    /* =====================================================
+       COMPANY GRID
+       ===================================================== */
+
+    .company-grid {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 11px !important;
+    }
+
+    .company-card {
+        width: 100% !important;
+
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       DAILY BANNER
+       ===================================================== */
+
+    .daily-banner {
+        width: 100%;
+
+        display: grid !important;
+
+        grid-template-columns:
+            45px minmax(0, 1fr);
+
+        gap: 12px;
+
+        padding: 17px !important;
+
+        margin-top: 21px;
+
+        border-radius: 14px;
+    }
+
+    .daily-icon {
+        width: 45px;
+
+        height: 45px;
+
+        display: grid;
+
+        place-items: center;
+    }
+
+    .daily-text {
+        min-width: 0;
+    }
+
+    .daily-text h3 {
+        font-size: 15px;
+
+        line-height: 1.4;
+    }
+
+    .daily-text p {
+        font-size: 10px;
+
+        line-height: 1.6;
+    }
+
+    .daily-button {
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        min-height: 43px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    /* =====================================================
+       ALL COMMON CONTENT CONTAINERS
+       ===================================================== */
+
+    .container,
+    .content,
+    .page-container,
+    .quiz-container,
+    .question-container,
+    .quiz-card,
+    .question-card,
+    .mock-container,
+    .mock-test-container,
+    .profile-container,
+    .profile-card,
+    .form-container,
+    .auth-container {
+        width: 100%;
+
+        max-width: 100%;
+
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       QUESTIONS
+       ===================================================== */
+
+    .question-card {
+        padding: 16px !important;
+
+        border-radius: 14px;
+    }
+
+    .question-text,
+    .question-title {
+        font-size: 15px !important;
+
+        line-height: 1.7;
+
+        overflow-wrap: break-word;
+    }
+
+
+    /* =====================================================
+       OPTIONS
+       ===================================================== */
+
+    .options-container,
+    .options-grid {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 9px !important;
+    }
+
+    .option {
+        width: 100% !important;
+
+        min-width: 0;
+
+        padding:
+            12px 13px !important;
+
+        font-size: 12px;
+
+        line-height: 1.55;
+
+        overflow-wrap: break-word;
+    }
+
+
+    /* =====================================================
+       FEEDBACK
+       ===================================================== */
+
+    .feedback {
+        width: 100%;
+
+        padding: 12px !important;
+
+        margin-top: 13px;
+
+        font-size: 11px !important;
+
+        line-height: 1.7;
+
+        overflow-wrap: break-word;
+    }
+
+    .explanation-text {
+        font-size: 11px !important;
+
+        line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       QUIZ BUTTONS
+       ===================================================== */
+
+    .quiz-actions {
+        width: 100%;
+
+        display: flex !important;
+
+        flex-direction: column !important;
+
+        gap: 9px !important;
+    }
+
+    .quiz-actions button,
+    .submit-button,
+    .next-button,
+    .quiz-button {
+        width: 100% !important;
+
+        min-height: 44px;
+    }
+
+
+    /* =====================================================
+       FORMS
+       ===================================================== */
+
+    .form-row {
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 10px;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        font-size: 14px;
+    }
+
+
+    /* =====================================================
+       PROGRAMMING PAGE
+       ===================================================== */
+
+    .language-grid,
+    .programming-grid {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 12px !important;
+    }
+
+    .language-card,
+    .programming-card {
+        width: 100% !important;
+
+        min-width: 0;
+
+        padding: 16px;
+    }
+
+
+    /* =====================================================
+       TOPICS
+       ===================================================== */
+
+    .topic-grid,
+    .topics-grid {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns: 1fr !important;
+
+        gap: 11px !important;
+    }
+
+    .topic-card {
+        width: 100% !important;
+
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       COMPANY LOGOS
+       ===================================================== */
+
+    .company-logo-grid,
+    .company-logos {
+        width: 100% !important;
+
+        display: grid !important;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr)) !important;
+
+        gap: 10px !important;
+    }
+
+    .company-logo-card {
+        min-width: 0;
+
+        padding: 10px;
+    }
+
+    .company-logo-card img {
+        max-width: 70px;
+
+        max-height: 50px;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       TABLE
+       ===================================================== */
+
+    .table-container {
+        width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 550px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
+    .dashboard-footer {
+        width: 100%;
+
+        padding:
+            18px 5px 5px;
+
+        font-size: 10px;
+
+        line-height: 1.6;
+
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   320px - 380px
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .sidebar {
+        padding: 11px 9px !important;
+    }
+
+    .sidebar-nav {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .sidebar-nav .nav-item {
+        padding:
+            8px 4px !important;
+
+        font-size: 9px;
+    }
+
+    .main-content {
+        padding:
+            15px 11px 22px !important;
+    }
+
+    .top-header h1 {
+        font-size: 18px !important;
+    }
+
+    .hero-banner {
+        padding:
+            19px 15px !important;
+    }
+
+    .hero-content h2 {
+        font-size: 24px !important;
+    }
+
+    .practice-card {
+        padding: 14px !important;
+    }
+
+    .question-card {
+        padding: 14px !important;
+    }
+
+}
+
+
+/* =========================================================
+   DO NOT ALLOW RANDOM OVERFLOW
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .main-content > *,
+    .practice-card,
+    .company-card,
+    .question-card,
+    .language-card,
+    .topic-card,
+    .daily-banner {
+        max-width: 100%;
+    }
+
+    pre {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+}

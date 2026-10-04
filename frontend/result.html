@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AptiPrep - Quiz Result</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+
+    <style>
+        .result-page {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .result-card {
+            width: 100%;
+            max-width: 600px;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .result-card h1 {
+            margin-bottom: 10px;
+        }
+
+        .result-subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .result-circle {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f1f5f9;
+            border: 10px solid #2563eb;
+        }
+
+        .result-circle span {
+            font-size: 42px;
+            font-weight: 700;
+        }
+
+        .score-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .score-item {
+            flex: 1;
+            padding: 18px 10px;
+            border-radius: 12px;
+            background: #f8fafc;
+        }
+
+        .score-item h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .score-item p {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .correct-number {
+            color: #16a34a;
+        }
+
+        .wrong-number {
+            color: #dc2626;
+        }
+
+        #resultMessage {
+            margin: 25px 0;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .result-actions button {
+            min-width: 160px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        #retryBtn {
+            background: #2563eb;
+            color: white;
+        }
+
+        #dashboardBtn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        @media (max-width: 500px) {
+
+            .result-card {
+                padding: 30px 20px;
+            }
+
+            .score-box {
+                gap: 8px;
+            }
+
+            .score-item p {
+                font-size: 23px;
+            }
+
+            .result-circle {
+                width: 140px;
+                height: 140px;
+            }
+
+            .result-circle span {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="result-page">
+
+        <section class="result-card">
+
+            <h1>🎉 Quiz Completed!</h1>
+
+            <p class="result-subtitle">
+                Here is your AptiPrep practice result
+            </p>
+
+            <!-- Percentage -->
+            <div class="result-circle" id="resultCircle">
+                <span id="percentage">0%</span>
+            </div>
+
+            <!-- Score -->
+            <div class="score-box">
+
+                <div class="score-item">
+                    <h3>Score</h3>
+                    <p>
+                        <span id="score">0</span>
+                        /
+                        <span id="total">0</span>
+                    </p>
+                </div>
+
+                <div class="score-item">
+                    <h3>Correct</h3>
+                    <p class="correct-number" id="correctCount">
+                        0
+                    </p>
+                </div>
+
+                <div class="score-item">
+                    <h3>Wrong</h3>
+                    <p class="wrong-number" id="wrongCount">
+                        0
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Message -->
+            <p id="resultMessage">
+                Keep practicing and improve your score!
+            </p>
+
+            <!-- Buttons -->
+            <div class="result-actions">
+
+                <button id="retryBtn">
+                    🔄 Try Again
+                </button>
+
+                <button id="dashboardBtn">
+                    🏠 Dashboard
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/result.js"></script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

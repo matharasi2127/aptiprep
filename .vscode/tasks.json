@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Start AptiPrep Backend From Backend Folder",
+			"type": "shell",
+			"command": "npm --prefix backend start",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Restart AptiPrep Backend Correctly",
+			"type": "shell",
+			"command": "$listener = Get-NetTCPConnection -LocalPort 5000 -State Listen -ErrorAction SilentlyContinue; $listener | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }; npm --prefix backend start",
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}

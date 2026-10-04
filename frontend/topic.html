@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aptitude Practice | AptiPrep</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="nav-content">
+
+        <a href="index.html" class="logo">
+            <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+        </a>
+
+        <nav class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="companies.html">Companies</a>
+            <a href="topics.html">Topics</a>
+            <a href="mock-test.html">Mock Tests</a>
+        </nav>
+
+        <a href="profile.html" class="btn btn-outline">
+            👤 Profile
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+<section class="quiz-page">
+
+    <div class="container">
+
+        <!-- TOP BAR -->
+
+        <div class="quiz-top">
+
+            <a href="companies.html" class="back-link">
+                ← Back to Companies
+            </a>
+
+            <div class="quiz-progress-text">
+                Question
+                <span id="currentQuestion">1</span>
+                of
+                <span id="totalQuestions">10</span>
+            </div>
+
+        </div>
+
+
+        <!-- QUIZ HEADER -->
+
+        <div class="quiz-header">
+
+            <div>
+
+                <span class="badge" id="companyBadge">
+                    COMPANY
+                </span>
+
+                <h1 id="topicName">
+                    Aptitude Practice
+                </h1>
+
+            </div>
+
+            <div class="score-box">
+
+                <span>Score</span>
+
+                <strong id="score">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-container">
+
+            <div
+                id="progressBar"
+                class="progress-bar"
+            ></div>
+
+        </div>
+
+
+        <!-- QUESTION CARD -->
+
+        <div id="questionsContainer"></div>
+
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script src="./js/topic.js?v=2"></script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

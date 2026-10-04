@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verbal Ability | AptiPrep</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/verbal.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+        </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="companies.html">Companies</a>
+            <a href="verbal.html">Verbal Ability</a>
+        </div>
+
+    </nav>
+
+
+    <!-- QUIZ -->
+    <main class="quiz-container">
+
+        <div class="quiz-header">
+
+            <h1 id="topicTitle">
+                Synonyms
+            </h1>
+
+            <p id="questionNumber">
+                Question 1 / 50
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-container">
+
+            <div
+                id="progressBar"
+                class="progress-bar">
+            </div>
+
+        </div>
+
+
+        <!-- QUESTION -->
+        <div class="question-card">
+
+            <h2 id="questionText">
+                Loading question...
+            </h2>
+
+
+            <!-- OPTIONS -->
+
+            <div class="options-container">
+
+                <button
+                    type="button"
+                    id="optionA"
+                    class="option-btn">
+
+                    <span class="option-circle">
+                        A
+                    </span>
+
+                    <span
+                        id="textA"
+                        class="option-text">
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="optionB"
+                    class="option-btn">
+
+                    <span class="option-circle">
+                        B
+                    </span>
+
+                    <span
+                        id="textB"
+                        class="option-text">
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="optionC"
+                    class="option-btn">
+
+                    <span class="option-circle">
+                        C
+                    </span>
+
+                    <span
+                        id="textC"
+                        class="option-text">
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="optionD"
+                    class="option-btn">
+
+                    <span class="option-circle">
+                        D
+                    </span>
+
+                    <span
+                        id="textD"
+                        class="option-text">
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <!-- ANSWER MESSAGE -->
+
+            <div
+                id="answerMessage"
+                class="answer-message"
+                style="display: none;">
+            </div>
+
+
+            <!-- EXPLANATION -->
+
+            <div
+                id="explanation"
+                class="explanation"
+                style="display: none;">
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="quiz-actions">
+
+                <button
+                    type="button"
+                    id="submitBtn"
+                    class="quiz-btn submit-btn">
+
+                    Submit Answer
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="nextBtn"
+                    class="quiz-btn next-btn"
+                    style="display: none;">
+
+                    Next Question →
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/verbal.js?v=5"></script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

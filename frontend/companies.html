@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AptiPrep - Companies</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/company.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+        </a>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="companies.html" class="active">Companies</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+
+    </header>
+
+
+    <!-- PAGE -->
+    <main class="companies-page">
+
+        <section class="company-header">
+
+            <h1>Practice by Company</h1>
+
+            <p>
+                Choose a company and start your placement aptitude preparation.
+            </p>
+
+            <!-- SEARCH -->
+            <div class="search-box">
+
+                <span class="search-icon">🔍</span>
+
+                <input
+                    type="text"
+                    id="companySearch"
+                    placeholder="Search companies..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPANY CARDS -->
+        <section class="companies-section">
+
+            <div
+                id="companyContainer"
+                class="company-grid">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/companies.js"></script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

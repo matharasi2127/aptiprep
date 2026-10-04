@@ -1,0 +1,1627 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AptiPrep | Formula Book</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7ff, #eef4ff, #ffffff);
+            color: #1f2937;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4f46e5;
+        }
+
+        .profile-btn {
+            padding: 9px 15px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        /* HEADER */
+
+        .hero {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 15px;
+            background: #eef2ff;
+            color: #4f46e5;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        .hero h1 span {
+            color: #4f46e5;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* SEARCH */
+
+        .search-container {
+            max-width: 750px;
+            margin: 10px auto 40px;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            width: 100%;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .search-box span {
+            font-size: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #374151;
+        }
+
+        /* MAIN */
+
+        .main-container {
+            width: 86%;
+            max-width: 1250px;
+            margin: auto;
+            padding-bottom: 70px;
+        }
+
+        .section-title {
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        /* TOPIC CARDS */
+
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 50px;
+        }
+
+        .topic-card {
+            background: white;
+            padding: 22px;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: 0.25s ease;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.09);
+            border-color: #c7d2fe;
+        }
+
+        .topic-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            border-radius: 12px;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .topic-card h3 {
+            font-size: 16px;
+            margin-bottom: 7px;
+        }
+
+        .topic-card p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        /* FORMULA SECTION */
+
+        .formula-section {
+            margin-top: 20px;
+        }
+
+        .formula-topic {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .formula-topic-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 22px;
+        }
+
+        .formula-topic-header .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            background: #eef2ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .formula-topic-header h2 {
+            font-size: 22px;
+        }
+
+        .formula-topic-header p {
+            color: #6b7280;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .formula-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .formula-card {
+            background: #f9fafb;
+            border: 1px solid #edf0f3;
+            border-radius: 13px;
+            padding: 18px;
+        }
+
+        .formula-card h4 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #374151;
+        }
+
+        .formula {
+            background: white;
+            border-radius: 9px;
+            padding: 12px;
+            font-weight: 700;
+            color: #4f46e5;
+            margin-bottom: 9px;
+            font-size: 14px;
+        }
+
+        .formula-card p {
+            color: #6b7280;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        /* EXAMPLE */
+
+        .example-box {
+            margin-top: 20px;
+            padding: 18px;
+            border-left: 4px solid #4f46e5;
+            background: #f5f7ff;
+            border-radius: 8px;
+        }
+
+        .example-box strong {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        .example-box p {
+            color: #4b5563;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* NO RESULT */
+
+        .no-result {
+            text-align: center;
+            padding: 50px;
+            display: none;
+            color: #6b7280;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            border-top: 1px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 1000px) {
+            .topic-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .formula-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .main-container {
+                width: 92%;
+            }
+
+            .topic-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 35px;
+            }
+
+            .formula-topic {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+        </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="companies.html">Companies</a>
+            <a href="mock-test.html">Mock Test</a>
+            <a href="daily-challenge.html">Daily Challenge</a>
+            <a href="formula-book.html" class="active">Formula Book</a>
+            <a href="profile.html" class="profile-btn">Profile</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            📘 Aptitude Formula Library
+        </div>
+
+        <h1>
+            Master Aptitude with
+            <span>Smart Formulas</span>
+        </h1>
+
+        <p>
+            Important aptitude formulas, shortcuts and concepts
+            organized topic-wise for placement preparation.
+        </p>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-container">
+
+        <div class="search-box">
+
+            <span>🔎</span>
+
+            <input
+                type="text"
+                id="formulaSearch"
+                placeholder="Search formulas... Example: Percentage, Profit, Speed"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <main class="main-container">
+
+        <h2 class="section-title">
+            Aptitude Topics
+        </h2>
+
+        <p class="section-subtitle">
+            Select a topic to quickly find the formulas you need.
+        </p>
+
+
+        <!-- TOPIC CARDS -->
+
+        <div class="topic-grid">
+
+            <div class="topic-card" onclick="scrollToTopic('number-system')">
+                <div class="topic-icon">🔢</div>
+                <h3>Number System</h3>
+                <p>Divisibility, LCM, HCF & remainders</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('percentage')">
+                <div class="topic-icon">📊</div>
+                <h3>Percentages</h3>
+                <p>Percentage change & shortcuts</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('profit-loss')">
+                <div class="topic-icon">💰</div>
+                <h3>Profit & Loss</h3>
+                <p>CP, SP, profit, loss & discount</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('ratio')">
+                <div class="topic-icon">⚖️</div>
+                <h3>Ratio & Proportion</h3>
+                <p>Ratios, proportions & partnership</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('average')">
+                <div class="topic-icon">📈</div>
+                <h3>Averages</h3>
+                <p>Average & weighted average</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('time-speed')">
+                <div class="topic-icon">🚗</div>
+                <h3>Time, Speed & Distance</h3>
+                <p>Speed, trains, boats & relative speed</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('time-work')">
+                <div class="topic-icon">⏱️</div>
+                <h3>Time & Work</h3>
+                <p>Work efficiency & pipes</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('interest')">
+                <div class="topic-icon">🏦</div>
+                <h3>Simple & Compound Interest</h3>
+                <p>SI, CI, amount & interest</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('algebra')">
+                <div class="topic-icon">✖️</div>
+                <h3>Algebra</h3>
+                <p>Identities & equations</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('permutation')">
+                <div class="topic-icon">🔀</div>
+                <h3>Permutation & Combination</h3>
+                <p>Arrangement & selection</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('probability')">
+                <div class="topic-icon">🎯</div>
+                <h3>Probability</h3>
+                <p>Basic probability concepts</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('mensuration')">
+                <div class="topic-icon">📐</div>
+                <h3>Mensuration</h3>
+                <p>Area, perimeter & volume</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('geometry')">
+                <div class="topic-icon">🔺</div>
+                <h3>Geometry</h3>
+                <p>Triangles, angles & circles</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('mixture')">
+                <div class="topic-icon">🧪</div>
+                <h3>Mixtures & Alligation</h3>
+                <p>Mixture and concentration</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('ages')">
+                <div class="topic-icon">👥</div>
+                <h3>Ages</h3>
+                <p>Age ratio & age problems</p>
+            </div>
+
+            <div class="topic-card" onclick="scrollToTopic('clock')">
+                <div class="topic-icon">🕐</div>
+                <h3>Clocks & Calendars</h3>
+                <p>Clock angles & calendar calculations</p>
+            </div>
+
+        </div>
+
+
+        <!-- FORMULA CONTENT -->
+
+        <section class="formula-section" id="formulaContent">
+
+            <!-- NUMBER SYSTEM -->
+
+            <div class="formula-topic" id="number-system">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🔢</div>
+
+                    <div>
+                        <h2>Number System</h2>
+                        <p>Important formulas and shortcuts</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Divisibility by 2</h4>
+                        <div class="formula">
+                            Last digit is 0, 2, 4, 6 or 8
+                        </div>
+                        <p>
+                            If the last digit is even, the number is divisible by 2.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Divisibility by 3</h4>
+                        <div class="formula">
+                            Sum of digits is divisible by 3
+                        </div>
+                        <p>
+                            Example: 123 → 1 + 2 + 3 = 6.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Divisibility by 5</h4>
+                        <div class="formula">
+                            Last digit = 0 or 5
+                        </div>
+                        <p>
+                            A number ending in 0 or 5 is divisible by 5.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>LCM × HCF</h4>
+                        <div class="formula">
+                            LCM × HCF = Product of two numbers
+                        </div>
+                        <p>
+                            This relation is useful for two positive integers.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Number of Factors</h4>
+                        <div class="formula">
+                            n = pᵃ × qᵇ → Factors = (a+1)(b+1)
+                        </div>
+                        <p>
+                            Used when a number is expressed as prime factors.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Sum of First n Natural Numbers</h4>
+                        <div class="formula">
+                            n(n + 1) / 2
+                        </div>
+                        <p>
+                            Example: 1 + 2 + 3 + ... + n.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERCENTAGE -->
+
+            <div class="formula-topic" id="percentage">
+
+                <div class="formula-topic-header">
+                    <div class="icon">📊</div>
+
+                    <div>
+                        <h2>Percentages</h2>
+                        <p>Common percentage formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Percentage</h4>
+                        <div class="formula">
+                            Percentage = (Part / Total) × 100
+                        </div>
+                        <p>
+                            Basic formula for calculating percentage.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Percentage Increase</h4>
+                        <div class="formula">
+                            Increase % = (Increase / Original) × 100
+                        </div>
+                        <p>
+                            Increase = New value − Original value.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Percentage Decrease</h4>
+                        <div class="formula">
+                            Decrease % = (Decrease / Original) × 100
+                        </div>
+                        <p>
+                            Decrease = Original value − New value.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Successive Changes</h4>
+                        <div class="formula">
+                            Net % = a + b + (ab / 100)
+                        </div>
+                        <p>
+                            For two successive increases. Use the signs of a and b for increase/decrease.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Fraction to Percentage</h4>
+                        <div class="formula">
+                            Fraction × 100 = Percentage
+                        </div>
+                        <p>
+                            Example: 1/4 × 100 = 25%.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROFIT LOSS -->
+
+            <div class="formula-topic" id="profit-loss">
+
+                <div class="formula-topic-header">
+                    <div class="icon">💰</div>
+
+                    <div>
+                        <h2>Profit & Loss</h2>
+                        <p>Business mathematics formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Profit</h4>
+                        <div class="formula">
+                            Profit = SP − CP
+                        </div>
+                        <p>
+                            When selling price is greater than cost price.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Loss</h4>
+                        <div class="formula">
+                            Loss = CP − SP
+                        </div>
+                        <p>
+                            When cost price is greater than selling price.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Profit Percentage</h4>
+                        <div class="formula">
+                            Profit % = (Profit / CP) × 100
+                        </div>
+                        <p>
+                            Profit percentage is calculated on cost price.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Loss Percentage</h4>
+                        <div class="formula">
+                            Loss % = (Loss / CP) × 100
+                        </div>
+                        <p>
+                            Loss percentage is calculated on cost price.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Discount</h4>
+                        <div class="formula">
+                            Discount = MP − SP
+                        </div>
+                        <p>
+                            MP = Marked Price and SP = Selling Price.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Discount Percentage</h4>
+                        <div class="formula">
+                            Discount % = (Discount / MP) × 100
+                        </div>
+                        <p>
+                            Discount percentage is calculated on marked price.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RATIO -->
+
+            <div class="formula-topic" id="ratio">
+
+                <div class="formula-topic-header">
+                    <div class="icon">⚖️</div>
+
+                    <div>
+                        <h2>Ratio & Proportion</h2>
+                        <p>Ratio-based aptitude formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Basic Ratio</h4>
+                        <div class="formula">
+                            a : b = a / b
+                        </div>
+                        <p>
+                            Ratio compares two quantities of the same kind.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Equivalent Ratio</h4>
+                        <div class="formula">
+                            a:b = ka:kb
+                        </div>
+                        <p>
+                            Multiply or divide both terms by the same non-zero number.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Proportion</h4>
+                        <div class="formula">
+                            a:b = c:d → ad = bc
+                        </div>
+                        <p>
+                            Product of extremes equals product of means.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Direct Proportion</h4>
+                        <div class="formula">
+                            x₁/y₁ = x₂/y₂
+                        </div>
+                        <p>
+                            When one quantity increases, the other increases proportionally.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AVERAGE -->
+
+            <div class="formula-topic" id="average">
+
+                <div class="formula-topic-header">
+                    <div class="icon">📈</div>
+
+                    <div>
+                        <h2>Averages</h2>
+                        <p>Average and weighted average formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Basic Average</h4>
+                        <div class="formula">
+                            Average = Sum of values / Number of values
+                        </div>
+                        <p>
+                            The most commonly used average formula.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Sum from Average</h4>
+                        <div class="formula">
+                            Sum = Average × Number of values
+                        </div>
+                        <p>
+                            Useful for finding missing totals.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Weighted Average</h4>
+                        <div class="formula">
+                            Weighted Average = Σ(wx) / Σw
+                        </div>
+                        <p>
+                            Used when values have different weights.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIME SPEED -->
+
+            <div class="formula-topic" id="time-speed">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🚗</div>
+
+                    <div>
+                        <h2>Time, Speed & Distance</h2>
+                        <p>Travel and motion formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Speed</h4>
+                        <div class="formula">
+                            Speed = Distance / Time
+                        </div>
+                        <p>
+                            Basic relationship between speed, distance and time.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Distance</h4>
+                        <div class="formula">
+                            Distance = Speed × Time
+                        </div>
+                        <p>
+                            Use when speed and time are known.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Time</h4>
+                        <div class="formula">
+                            Time = Distance / Speed
+                        </div>
+                        <p>
+                            Use when distance and speed are known.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Average Speed</h4>
+                        <div class="formula">
+                            Average Speed = Total Distance / Total Time
+                        </div>
+                        <p>
+                            Do not simply average speeds unless conditions allow it.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Relative Speed</h4>
+                        <div class="formula">
+                            Same direction → |S₁ − S₂|
+                        </div>
+                        <p>
+                            For opposite directions, relative speed is S₁ + S₂.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>km/hr to m/s</h4>
+                        <div class="formula">
+                            km/hr × 5/18 = m/s
+                        </div>
+                        <p>
+                            Example: 36 km/hr = 10 m/s.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TIME WORK -->
+
+            <div class="formula-topic" id="time-work">
+
+                <div class="formula-topic-header">
+                    <div class="icon">⏱️</div>
+
+                    <div>
+                        <h2>Time & Work</h2>
+                        <p>Work and efficiency formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Work Rate</h4>
+                        <div class="formula">
+                            Work Rate = 1 / Time
+                        </div>
+                        <p>
+                            If a person completes work in x days, daily work = 1/x.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Combined Work</h4>
+                        <div class="formula">
+                            Combined Rate = 1/x + 1/y
+                        </div>
+                        <p>
+                            Used when two people work together.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Efficiency</h4>
+                        <div class="formula">
+                            Efficiency ∝ 1 / Time
+                        </div>
+                        <p>
+                            More efficiency means less time for the same work.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Work Formula</h4>
+                        <div class="formula">
+                            Work = Efficiency × Time
+                        </div>
+                        <p>
+                            Useful for comparing workers.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- INTEREST -->
+
+            <div class="formula-topic" id="interest">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🏦</div>
+
+                    <div>
+                        <h2>Simple & Compound Interest</h2>
+                        <p>Banking and interest formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Simple Interest</h4>
+                        <div class="formula">
+                            SI = (P × R × T) / 100
+                        </div>
+                        <p>
+                            P = Principal, R = Rate, T = Time.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Amount</h4>
+                        <div class="formula">
+                            Amount = Principal + Interest
+                        </div>
+                        <p>
+                            Total amount after adding interest.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Compound Amount</h4>
+                        <div class="formula">
+                            A = P(1 + R/100)ᵀ
+                        </div>
+                        <p>
+                            Standard compound interest formula for annual compounding.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Compound Interest</h4>
+                        <div class="formula">
+                            CI = A − P
+                        </div>
+                        <p>
+                            Compound interest equals amount minus principal.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALGEBRA -->
+
+            <div class="formula-topic" id="algebra">
+
+                <div class="formula-topic-header">
+                    <div class="icon">✖️</div>
+
+                    <div>
+                        <h2>Algebra</h2>
+                        <p>Important algebraic identities</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Identity 1</h4>
+                        <div class="formula">
+                            (a + b)² = a² + 2ab + b²
+                        </div>
+                        <p>
+                            Basic square identity.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Identity 2</h4>
+                        <div class="formula">
+                            (a − b)² = a² − 2ab + b²
+                        </div>
+                        <p>
+                            Useful for quick simplification.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Difference of Squares</h4>
+                        <div class="formula">
+                            a² − b² = (a+b)(a−b)
+                        </div>
+                        <p>
+                            Common factorization identity.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Cube Identity</h4>
+                        <div class="formula">
+                            a³ + b³ = (a+b)(a²−ab+b²)
+                        </div>
+                        <p>
+                            Useful for factorization.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PERMUTATION -->
+
+            <div class="formula-topic" id="permutation">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🔀</div>
+
+                    <div>
+                        <h2>Permutation & Combination</h2>
+                        <p>Arrangement and selection formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Factorial</h4>
+                        <div class="formula">
+                            n! = n × (n−1) × ... × 1
+                        </div>
+                        <p>
+                            Example: 5! = 120.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Permutation</h4>
+                        <div class="formula">
+                            ⁿPᵣ = n! / (n−r)!
+                        </div>
+                        <p>
+                            Used when order matters.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Combination</h4>
+                        <div class="formula">
+                            ⁿCᵣ = n! / [r!(n−r)!]
+                        </div>
+                        <p>
+                            Used when order does not matter.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROBABILITY -->
+
+            <div class="formula-topic" id="probability">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🎯</div>
+
+                    <div>
+                        <h2>Probability</h2>
+                        <p>Basic probability formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Basic Probability</h4>
+                        <div class="formula">
+                            P(E) = Favourable Outcomes / Total Outcomes
+                        </div>
+                        <p>
+                            Used when outcomes are equally likely.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Complement</h4>
+                        <div class="formula">
+                            P(not E) = 1 − P(E)
+                        </div>
+                        <p>
+                            Probability of an event not occurring.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Probability Range</h4>
+                        <div class="formula">
+                            0 ≤ P(E) ≤ 1
+                        </div>
+                        <p>
+                            Probability always lies between 0 and 1.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENSURATION -->
+
+            <div class="formula-topic" id="mensuration">
+
+                <div class="formula-topic-header">
+                    <div class="icon">📐</div>
+
+                    <div>
+                        <h2>Mensuration</h2>
+                        <p>Area, perimeter and volume formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Rectangle Area</h4>
+                        <div class="formula">
+                            Area = Length × Breadth
+                        </div>
+                        <p>
+                            Area of a rectangle.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Rectangle Perimeter</h4>
+                        <div class="formula">
+                            Perimeter = 2(L + B)
+                        </div>
+                        <p>
+                            L = Length, B = Breadth.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Square Area</h4>
+                        <div class="formula">
+                            Area = Side²
+                        </div>
+                        <p>
+                            Area of a square.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Circle Area</h4>
+                        <div class="formula">
+                            Area = πr²
+                        </div>
+                        <p>
+                            r = radius.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Circle Circumference</h4>
+                        <div class="formula">
+                            Circumference = 2πr
+                        </div>
+                        <p>
+                            Perimeter of a circle.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Cuboid Volume</h4>
+                        <div class="formula">
+                            Volume = L × B × H
+                        </div>
+                        <p>
+                            L = Length, B = Breadth, H = Height.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Cylinder Volume</h4>
+                        <div class="formula">
+                            Volume = πr²h
+                        </div>
+                        <p>
+                            r = radius and h = height.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- GEOMETRY -->
+
+            <div class="formula-topic" id="geometry">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🔺</div>
+
+                    <div>
+                        <h2>Geometry</h2>
+                        <p>Important geometry concepts</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Triangle Area</h4>
+                        <div class="formula">
+                            Area = ½ × Base × Height
+                        </div>
+                        <p>
+                            Basic triangle area formula.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Triangle Angle Sum</h4>
+                        <div class="formula">
+                            A + B + C = 180°
+                        </div>
+                        <p>
+                            Sum of interior angles of a triangle.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Right Triangle</h4>
+                        <div class="formula">
+                            Hypotenuse² = Base² + Height²
+                        </div>
+                        <p>
+                            Pythagorean theorem.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Quadrilateral Angle Sum</h4>
+                        <div class="formula">
+                            Sum = 360°
+                        </div>
+                        <p>
+                            Sum of interior angles of a quadrilateral.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MIXTURE -->
+
+            <div class="formula-topic" id="mixture">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🧪</div>
+
+                    <div>
+                        <h2>Mixtures & Alligation</h2>
+                        <p>Mixture and concentration shortcuts</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Weighted Average</h4>
+                        <div class="formula">
+                            Average = Total Quantity Value / Total Quantity
+                        </div>
+                        <p>
+                            Useful for mixture problems.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Alligation Ratio</h4>
+                        <div class="formula">
+                            Cheap : Dear = (Dear − Mean) : (Mean − Cheap)
+                        </div>
+                        <p>
+                            Used to determine the ratio in which two quantities are mixed.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- AGES -->
+
+            <div class="formula-topic" id="ages">
+
+                <div class="formula-topic-header">
+                    <div class="icon">👥</div>
+
+                    <div>
+                        <h2>Ages</h2>
+                        <p>Age problem formulas and methods</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Present Age</h4>
+                        <div class="formula">
+                            Present Age = Given Age Relation
+                        </div>
+                        <p>
+                            Convert age statements into equations.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Age Difference</h4>
+                        <div class="formula">
+                            Age Difference remains constant
+                        </div>
+                        <p>
+                            The difference between two people's ages does not change with time.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CLOCK -->
+
+            <div class="formula-topic" id="clock">
+
+                <div class="formula-topic-header">
+                    <div class="icon">🕐</div>
+
+                    <div>
+                        <h2>Clocks & Calendars</h2>
+                        <p>Important clock and calendar formulas</p>
+                    </div>
+                </div>
+
+                <div class="formula-list">
+
+                    <div class="formula-card">
+                        <h4>Clock Angle</h4>
+                        <div class="formula">
+                            Angle = |30H − 5.5M|
+                        </div>
+                        <p>
+                            H = hour and M = minutes.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Minute Hand</h4>
+                        <div class="formula">
+                            6° per minute
+                        </div>
+                        <p>
+                            The minute hand moves 6 degrees every minute.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Hour Hand</h4>
+                        <div class="formula">
+                            0.5° per minute
+                        </div>
+                        <p>
+                            The hour hand moves half a degree every minute.
+                        </p>
+                    </div>
+
+                    <div class="formula-card">
+                        <h4>Leap Year</h4>
+                        <div class="formula">
+                            Divisible by 4, except century years unless divisible by 400
+                        </div>
+                        <p>
+                            Example: 2000 is a leap year; 1900 is not.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <div class="no-result" id="noResult">
+            <h3>No formulas found</h3>
+            <p>Try searching another aptitude topic.</p>
+        </div>
+
+    </main>
+
+
+    <footer>
+        © 2026 AptiPrep — Smart Aptitude Preparation Platform
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        /* SEARCH FORMULAS */
+
+        const searchInput = document.getElementById("formulaSearch");
+        const formulaTopics = document.querySelectorAll(".formula-topic");
+        const noResult = document.getElementById("noResult");
+
+        searchInput.addEventListener("input", function () {
+
+            const searchValue = this.value.toLowerCase().trim();
+
+            let found = false;
+
+            formulaTopics.forEach(function(topic) {
+
+                const text = topic.innerText.toLowerCase();
+
+                if (text.includes(searchValue)) {
+
+                    topic.style.display = "block";
+                    found = true;
+
+                } else {
+
+                    topic.style.display = "none";
+
+                }
+
+            });
+
+            if (found) {
+                noResult.style.display = "none";
+            } else {
+                noResult.style.display = "block";
+            }
+
+        });
+
+
+        /* SCROLL TO TOPIC */
+
+        function scrollToTopic(topicId) {
+
+            const topic = document.getElementById(topicId);
+
+            if (topic) {
+
+                topic.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        }
+
+    </script>
+
+<script src="js/theme.js"></script>
+</body>
+</html>
+```

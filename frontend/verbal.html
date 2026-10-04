@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verbal Ability | AptiPrep</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/verbal-home.css?v=1">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+        </a>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="companies.html">Companies</a>
+            <a href="verbal.html" class="active">Verbal Ability</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                ✦ Placement Preparation
+            </div>
+
+            <h1>
+                Verbal Ability
+            </h1>
+
+            <p>
+                Improve your English skills, vocabulary and grammar
+                with placement-focused practice.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOPICS SECTION -->
+    <main class="topics-container">
+
+        <div class="section-heading">
+
+            <span>VERBAL PRACTICE</span>
+
+            <h2>
+                Choose a Topic
+            </h2>
+
+            <p>
+                Select a topic and start practicing
+            </p>
+
+        </div>
+
+
+        <div class="topics-grid">
+
+
+            <!-- 1. SYNONYMS -->
+            <div
+                class="topic-card"
+                onclick="startTopic('Synonyms')">
+
+                <div class="topic-icon purple">
+                    <span>✦</span>
+                </div>
+
+                <div class="topic-content">
+
+                    <h3>
+                        Synonyms
+                    </h3>
+
+                    <p>
+                        Find words with similar meanings.
+                    </p>
+
+                    <div class="topic-bottom">
+
+                        <span>
+                            50 Questions
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 2. ANTONYMS -->
+            <div
+                class="topic-card"
+                onclick="startTopic('Antonyms')">
+
+                <div class="topic-icon blue">
+                    <span>↔</span>
+                </div>
+
+                <div class="topic-content">
+
+                    <h3>
+                        Antonyms
+                    </h3>
+
+                    <p>
+                        Practice words with opposite meanings.
+                    </p>
+
+                    <div class="topic-bottom">
+
+                        <span>
+                            50 Questions
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 3. SPOTTING ERRORS -->
+            <div
+                class="topic-card"
+                onclick="startTopic('Spotting Errors')">
+
+                <div class="topic-icon orange">
+                    <span>✓</span>
+                </div>
+
+                <div class="topic-content">
+
+                    <h3>
+                        Spotting Errors
+                    </h3>
+
+                    <p>
+                        Identify grammatical errors in sentences.
+                    </p>
+
+                    <div class="topic-bottom">
+
+                        <span>
+                            50 Questions
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 4. SENTENCE CORRECTION -->
+            <div
+                class="topic-card"
+                onclick="startTopic('Sentence Correction')">
+
+                <div class="topic-icon green">
+                    <span>✎</span>
+                </div>
+
+                <div class="topic-content">
+
+                    <h3>
+                        Sentence Correction
+                    </h3>
+
+                    <p>
+                        Improve incorrect sentences using grammar.
+                    </p>
+
+                    <div class="topic-bottom">
+
+                        <span>
+                            50 Questions
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 5. IDIOMS & PHRASES -->
+            <div
+                class="topic-card"
+                onclick="startTopic('Idioms & Phrases')">
+
+                <div class="topic-icon pink">
+                    <span>❝</span>
+                </div>
+
+                <div class="topic-content">
+
+                    <h3>
+                        Idioms & Phrases
+                    </h3>
+
+                    <p>
+                        Learn commonly used idioms and phrases.
+                    </p>
+
+                    <div class="topic-bottom">
+
+                        <span>
+                            50 Questions
+                        </span>
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 AptiPrep · Practice Smart. Prepare Better.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        function startTopic(topic) {
+
+            window.location.href =
+                "verbal-questions.html?topic=" +
+                encodeURIComponent(topic);
+
+        }
+
+    </script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

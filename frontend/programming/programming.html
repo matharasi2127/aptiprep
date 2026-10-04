@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming Practice | AptiPrep</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="programming.css">
+</head>
+<body>
+  <main class="programming-container">
+    <a href="../dashboard.html" class="back-link">← Back to Home</a>
+
+    <header class="page-header">
+      <div>
+        <span class="eyebrow">APTITUDE PREPARATION</span>
+        <h1>Programming Practice</h1>
+        <p>Choose a programming language and improve your coding knowledge.</p>
+      </div>
+      <div class="header-icon">{"</>"}</div>
+    </header>
+
+    <section id="languageSection">
+      <h2>Choose Your Language</h2>
+      <div class="language-grid">
+        <button class="language-card c-card" data-language="c">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C logo">
+          <h3>C Programming</h3>
+          <p>50 Questions</p>
+          <span>Start Practice →</span>
+        </button>
+
+        <button class="language-card cpp-card" data-language="cpp">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ logo">
+          <h3>C++ Programming</h3>
+          <p>50 Questions</p>
+          <span>Start Practice →</span>
+        </button>
+
+        <button class="language-card java-card" data-language="java">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java logo">
+          <h3>Java Programming</h3>
+          <p>50 Questions</p>
+          <span>Start Practice →</span>
+        </button>
+
+        <button class="language-card python-card" data-language="python">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python logo">
+          <h3>Python Programming</h3>
+          <p>50 Questions</p>
+          <span>Start Practice →</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="questionSection" hidden>
+      <button id="backButton" class="back-button">← Back to Languages</button>
+
+      <div class="question-header">
+        <div>
+          <img id="selectedLogo" src="" alt="Language logo">
+          <div>
+            <h2 id="selectedLanguage"></h2>
+            <p>Programming Practice · MCQ Questions</p>
+          </div>
+        </div>
+        <span id="progressText">Question 1 of 50</span>
+      </div>
+
+      <div class="question-card">
+        <div class="progress-track">
+          <div id="progressBar"></div>
+        </div>
+
+        <p id="questionNumber" class="question-number">QUESTION 1</p>
+        <h3 id="questionText"></h3>
+
+        <div id="optionsContainer" class="options-container"></div>
+
+        <p id="feedback" class="feedback" aria-live="polite"></p>
+
+        <button id="submitButton" class="submit-button">Submit Answer →</button>
+        <button id="nextButton" class="next-button" hidden>Next Question →</button>
+
+        <div id="resultBox" class="result-box" hidden>
+          <h3>Practice Completed!</h3>
+          <p id="finalScore"></p>
+          <button id="retryButton" class="submit-button">Practice Again</button>
+          <button id="languagesButton" class="next-button">Choose Another Language</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="c-questions.js"></script>
+  <script src="cpp-questions.js"></script>
+  <script src="java-questions.js"></script>
+  <script src="python-questions.js"></script>
+  <script src="programming.js"></script>
+<script src="../js/theme.js"></script>
+</body>
+</html>

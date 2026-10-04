@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Profile | AptiPrep</title>
+	<link rel="icon" type="image/svg+xml" href="favicon.svg">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+	<header class="navbar">
+		<div class="nav-content">
+			<a href="dashboard.html" class="logo">
+				<img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+			</a>
+			<nav class="nav-links">
+				<a href="dashboard.html">Dashboard</a>
+				<a href="companies.html">Companies</a>
+				<a href="topics.html">Topics</a>
+				<a href="mock-test.html">Mock Tests</a>
+			</nav>
+		</div>
+	</header>
+
+	<main class="auth-page">
+		<section class="auth-card profile-form-card">
+			<h1>Your Profile</h1>
+			<p>Update your account details.</p>
+
+			<form id="profileForm">
+				<div class="form-group">
+					<label for="profileName">Full Name</label>
+					<input id="profileName" type="text" required autocomplete="name">
+				</div>
+
+				<div class="form-group">
+					<label for="profileEmail">Email</label>
+					<input id="profileEmail" type="email" readonly>
+				</div>
+
+				<div id="profileMessage" class="auth-success"></div>
+				<div id="profileError" class="auth-error"></div>
+
+				<button id="saveProfileBtn" class="auth-btn" type="submit">
+					Save Profile
+				</button>
+			</form>
+
+			<div class="auth-footer">
+				<a href="dashboard.html">← Back to Dashboard</a>
+			</div>
+		</section>
+	</main>
+
+	<script src="js/profile.js"></script>
+<script src="js/theme.js"></script>
+</body>
+</html>

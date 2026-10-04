@@ -1,0 +1,169 @@
+body.aptiprep-preview-active {
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: var(--light, #f7f8fc) !important;
+}
+
+body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active {
+    overflow-x: auto;
+}
+
+body.aptiprep-preview-active > :not(.aptiprep-view-switcher):not(.aptiprep-view-frame) {
+    display: none !important;
+}
+
+.aptiprep-view-switcher {
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    width: max-content;
+    min-height: 44px;
+    margin: 8px 12px 4px auto;
+    padding: 4px;
+    background: var(--white, #fff);
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, .08);
+}
+
+.aptiprep-view-switcher button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 6px 11px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--dark-soft, #374151);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+
+.aptiprep-view-switcher button:hover {
+    background: rgba(91, 92, 226, .08);
+}
+
+.aptiprep-view-switcher button[aria-pressed="true"] {
+    background: var(--primary-light, #eeeeff);
+    border-color: var(--border, #e5e7eb);
+    color: var(--primary-dark, #4546bd);
+}
+
+.aptiprep-view-switcher button:focus-visible {
+    outline: 2px solid var(--primary, #5b5ce2);
+    outline-offset: 2px;
+}
+
+.aptiprep-view-switcher .view-icon {
+    font-size: 16px;
+}
+
+.aptiprep-view-frame {
+    display: none;
+    box-sizing: border-box;
+    background: #fff;
+    border: 0;
+    transition: width .25s ease, height .25s ease, border-radius .25s ease;
+}
+
+body.aptiprep-preview-active .aptiprep-view-frame {
+    display: block;
+}
+
+body[data-aptiprep-view-mode="mobile"].aptiprep-preview-active .aptiprep-view-frame {
+    width: min(406px, calc(100vw - 12px));
+    height: 860px;
+    margin: 8px auto;
+    border: 8px solid #202432;
+    border-radius: 28px;
+    box-shadow: 0 12px 36px rgba(15, 23, 42, .18);
+}
+
+body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active .aptiprep-view-frame {
+    width: max(100%, 1024px);
+    height: 768px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.aptiprep-back-row {
+    width: min(1200px, 92%);
+    margin: 10px auto 0;
+}
+
+.aptiprep-back-row .back-button.aptiprep-universal-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 76px;
+    min-height: 40px;
+    padding: 8px 13px;
+    border: 1px solid var(--border, #e5e7eb);
+    border-radius: 10px;
+    background: var(--white, #fff);
+    color: var(--primary, #5b5ce2);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+.aptiprep-back-row .back-button.aptiprep-universal-back:hover {
+    transform: translateX(-2px);
+    border-color: var(--primary, #5b5ce2);
+    background: var(--primary-light, #eeeeff);
+}
+
+.aptiprep-back-row .back-button.aptiprep-universal-back:focus-visible {
+    outline: 2px solid var(--primary, #5b5ce2);
+    outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+    .aptiprep-view-switcher {
+        margin-top: 6px;
+        margin-right: 8px;
+    }
+
+    .aptiprep-view-switcher button {
+        min-height: 34px;
+        padding-inline: 9px;
+        font-size: 12px;
+    }
+
+    .aptiprep-back-row {
+        margin-top: 7px;
+    }
+
+    .aptiprep-back-row .back-button.aptiprep-universal-back {
+        min-height: 42px;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    body[data-aptiprep-view-mode="mobile"].aptiprep-preview-active .aptiprep-view-frame {
+        width: calc(100vw - 8px);
+        height: 860px;
+        margin: 5px auto;
+        border-width: 4px;
+        border-radius: 20px;
+    }
+
+    body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active .aptiprep-view-frame {
+        height: 768px;
+    }
+}

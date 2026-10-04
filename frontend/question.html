@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practice Question | AptiPrep</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Quiz CSS -->
+    <link rel="stylesheet" href="css/quiz.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="dashboard.html" class="logo">
+                <img src="assets/aptiprep-logo.svg" alt="AptiPrep - Learn, Practice, Grow" class="brand-logo">
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+                <a href="companies.html">
+                    Companies
+                </a>
+
+                <a href="topics.html">
+                    Topics
+                </a>
+
+                <a href="mock-test.html">
+                    Mock Tests
+                </a>
+
+                <a href="daily-challenge.html">
+                    Daily Challenge
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= QUIZ PAGE ================= -->
+
+    <main class="quiz-page">
+
+        <div class="quiz-container">
+
+
+            <!-- ================= QUIZ HEADER ================= -->
+
+            <div class="quiz-header">
+
+                <div class="quiz-title-section">
+
+                    <p class="quiz-label">
+                        AptiPrep Practice
+                    </p>
+
+                    <h1 id="topicTitle">
+                        Loading Topic...
+                    </h1>
+
+                </div>
+
+
+                <div class="question-counter">
+
+                    <span id="questionNumber">
+                        Question 1
+                    </span>
+
+                    <span>
+                        /
+                    </span>
+
+                    <span id="totalQuestions">
+                        10
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= PROGRESS BAR ================= -->
+
+            <div class="progress-wrapper">
+
+                <div class="progress-bar">
+
+                    <div
+                        id="progress"
+                        class="progress-fill"
+                        style="width: 10%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= QUESTION CARD ================= -->
+
+            <div class="question-card">
+
+
+                <!-- Question Number -->
+
+                <div class="question-number-small">
+
+                    Question
+
+                    <span id="currentQuestionNumber">
+                        1
+                    </span>
+
+                </div>
+
+
+
+                <!-- Question Text -->
+
+                <h2 id="questionText">
+                    Loading question...
+                </h2>
+
+
+
+                <!-- ================= OPTIONS ================= -->
+
+                <div class="options-container">
+
+
+                    <!-- OPTION A -->
+
+                    <button
+                        type="button"
+                        class="option"
+                        id="optionA"
+                        data-option="A">
+
+                        <span class="option-letter">
+                            A
+                        </span>
+
+                        <span class="option-text">
+                            Loading...
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- OPTION B -->
+
+                    <button
+                        type="button"
+                        class="option"
+                        id="optionB"
+                        data-option="B">
+
+                        <span class="option-letter">
+                            B
+                        </span>
+
+                        <span class="option-text">
+                            Loading...
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- OPTION C -->
+
+                    <button
+                        type="button"
+                        class="option"
+                        id="optionC"
+                        data-option="C">
+
+                        <span class="option-letter">
+                            C
+                        </span>
+
+                        <span class="option-text">
+                            Loading...
+                        </span>
+
+                    </button>
+
+
+
+                    <!-- OPTION D -->
+
+                    <button
+                        type="button"
+                        class="option"
+                        id="optionD"
+                        data-option="D">
+
+                        <span class="option-letter">
+                            D
+                        </span>
+
+                        <span class="option-text">
+                            Loading...
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- ================= ANSWER MESSAGE ================= -->
+
+                <div
+                    id="answerMessage"
+                    class="answer-message"
+                    style="display: none;">
+
+                </div>
+
+
+
+                <!-- ================= EXPLANATION ================= -->
+
+                <div
+                    id="explanation"
+                    class="explanation-box"
+                    style="display: none;">
+
+                    <div class="explanation-title">
+                        💡 Explanation
+                    </div>
+
+                    <p id="explanationText">
+                    </p>
+
+                </div>
+
+
+
+                <!-- ================= SOURCE ================= -->
+
+                <div
+                    id="questionSource"
+                    class="question-source"
+                    style="display: none;">
+
+                    Source:
+
+                    <span id="sourceText">
+                    </span>
+
+                </div>
+
+
+
+                <!-- ================= BUTTONS ================= -->
+
+                <div class="quiz-actions">
+
+
+                    <!-- SUBMIT -->
+
+                    <button
+                        type="button"
+                        id="submitBtn"
+                        class="quiz-btn submit-btn">
+
+                        Submit Answer
+
+                    </button>
+
+
+
+                    <!-- NEXT -->
+
+                    <button
+                        type="button"
+                        id="nextBtn"
+                        class="quiz-btn next-btn"
+                        style="display: none;">
+
+                        Next Question
+
+                        <span class="arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/questions.js?v=3"></script>
+
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>

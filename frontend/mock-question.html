@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mock Test | AptiPrep</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+
+    <style>
+        .option {
+            width: 100%;
+            display: block;
+            padding: 16px 18px;
+            margin: 12px 0;
+
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+
+            text-align: left;
+            cursor: pointer;
+
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        /* Hover */
+        .option:hover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+        }
+
+        /* SELECTED ANSWER */
+        .option.selected {
+            background: #e0e7ff;
+            border-color: #4f46e5;
+            color: #3730a3;
+            font-weight: 600;
+        }
+
+        /* CORRECT ANSWER - AFTER SUBMIT */
+        .option.correct {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #166534;
+            font-weight: 600;
+        }
+
+        /* WRONG SELECTED ANSWER - AFTER SUBMIT */
+        .option.wrong {
+            background: #fee2e2;
+            border-color: #dc2626;
+            color: #991b1b;
+            font-weight: 600;
+        }
+
+        /* Explanation hidden initially */
+        .explanation {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+
+            background: #f8fafc;
+            border-left: 4px solid #6366f1;
+            border-radius: 10px;
+        }
+
+        /* =========================================
+           MOCK TEST BUTTONS
+        ========================================= */
+
+        .submit-btn,
+        .next-btn {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+
+            width: auto !important;
+            min-width: 180px;
+
+            padding: 14px 28px !important;
+            margin-top: 24px !important;
+
+            border: none !important;
+            border-radius: 12px !important;
+
+            background: #4f46e5 !important;
+            color: white !important;
+
+            font-size: 16px !important;
+            font-weight: 600 !important;
+
+            cursor: pointer !important;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+
+            box-shadow:
+                0 6px 16px rgba(79, 70, 229, 0.25) !important;
+        }
+
+        /* Submit hover */
+
+        .submit-btn:hover:not(:disabled),
+        .next-btn:hover {
+            background: #4338ca !important;
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 22px rgba(79, 70, 229, 0.30) !important;
+        }
+
+        /* Submit disabled */
+
+        .submit-btn:disabled {
+            opacity: 0.55 !important;
+            cursor: not-allowed !important;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Next button */
+
+        .next-btn {
+            display: none !important;
+        }
+
+        /* When JS shows Next button */
+
+        .next-btn[style*="display: inline-block"] {
+            display: inline-flex !important;
+        }
+
+        /* Button area */
+
+        .question-card {
+            padding-bottom: 35px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="mock-wrapper">
+
+        <div class="mock-header">
+
+            <h1 id="companyName">
+                Mock Test
+            </h1>
+
+            <div id="timer">
+                20:00
+            </div>
+
+        </div>
+
+
+        <div id="progress">
+            Loading questions...
+        </div>
+
+
+        <div id="mockQuestionContainer">
+
+            <p>
+                Loading your mock test...
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- IMPORTANT:
+         Your existing JS file is mock-questions.js
+    -->
+
+    <script src="./js/mock-questions.js"></script>
+
+<script src="js/theme.js"></script>
+</body>
+
+</html>
