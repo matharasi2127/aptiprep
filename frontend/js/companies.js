@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("companySearch");
 
     // IMPORTANT
-    const API_URL = "http://localhost:5000/api/companies";
+    const API_URL = "https://aptiprep-1zyu.onrender.com/api/companies";
 
     let allCompanies = [];
 
