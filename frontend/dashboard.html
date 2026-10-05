@@ -445,7 +445,7 @@
 <!-- DASHBOARD JS -->
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+(() => {
 
     const storedUser =
         localStorage.getItem("aptiprep_user");
@@ -459,6 +459,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const name =
                 user.name ||
+                user.full_name ||
                 user.username ||
                 "Learner";
 
@@ -506,7 +507,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-});
+})();
 
 </script>
 
