@@ -85,9 +85,9 @@ body[data-aptiprep-view-mode="mobile"].aptiprep-preview-active .aptiprep-view-fr
     width: min(406px, calc(100vw - 12px));
     height: 860px;
     margin: 8px auto;
-    border: 8px solid #202432;
-    border-radius: 28px;
-    box-shadow: 0 12px 36px rgba(15, 23, 42, .18);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active .aptiprep-view-frame {
@@ -153,14 +153,6 @@ body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active .aptiprep-view-fr
         min-height: 42px;
         padding: 8px 12px;
         font-size: 13px;
-    }
-
-    body[data-aptiprep-view-mode="mobile"].aptiprep-preview-active .aptiprep-view-frame {
-        width: calc(100vw - 8px);
-        height: 860px;
-        margin: 5px auto;
-        border-width: 4px;
-        border-radius: 20px;
     }
 
     body[data-aptiprep-view-mode="laptop"].aptiprep-preview-active .aptiprep-view-frame {

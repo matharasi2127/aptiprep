@@ -13,7 +13,7 @@
         viewStylesheet.href = new URL(
             "../css/view-switcher.css",
             themeScriptURL
-        ).href + "?v=3";
+        ).href + "?v=4";
 
         viewStylesheet.addEventListener("load", loadViewSwitcher, { once: true });
         viewStylesheet.addEventListener("error", loadViewSwitcher, { once: true });
@@ -25,7 +25,7 @@
         script.src = new URL(
             "view-switcher.js",
             themeScriptURL
-        ).href + "?v=4";
+        ).href + "?v=5";
         document.body.appendChild(script);
     }
 

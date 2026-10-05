@@ -121,7 +121,7 @@
     }
 
     addBackButton();
-    if (window.self !== window.top) return;
+    if (window.self !== window.top || window.innerWidth < 1024) return;
 
     const storageKey = "aptiprep_view_mode";
     const initialMode = localStorage.getItem(storageKey) === "mobile"

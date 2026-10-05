@@ -325,6 +325,10 @@
 =================================== */
 
 @media (max-width: 900px) {
+    .company-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .topic-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -336,6 +340,10 @@
 }
 
 @media (max-width: 600px) {
+    .company-grid {
+        grid-template-columns: 1fr;
+    }
+
     .company-hero {
         padding: 24px 0 32px;
     }
