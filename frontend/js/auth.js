@@ -7,7 +7,7 @@ const API_URL = "https://aptiprep-1zyu.onrender.com/api";
 
 async function registerUser(name, email, password) {
 
-    const response = await fetch("http://localhost:5000/api/auth/register", {
+    const response = await fetch(`${API_URL}/auth/register`, {
 
         method: "POST",
 

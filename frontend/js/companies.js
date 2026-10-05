@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <p>
                         Please check
-                        <b>localhost:5000</b>
+                        <b>https://aptiprep-1zyu.onrender.com/api</b>
                     </p>
 
                 </div>
