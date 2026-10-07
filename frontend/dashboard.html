@@ -8,7 +8,7 @@
     <title>Dashboard | AptiPrep</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/dashboard.css?v=4">
+    <link rel="stylesheet" href="css/dashboard.css?v=5">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
@@ -208,6 +208,33 @@
 
         </section>
 
+
+
+        <!-- PERFORMANCE -->
+        <section class="performance-section" aria-labelledby="performanceHeading">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">YOUR PERFORMANCE</span>
+                    <h2 id="performanceHeading">Practice Stats</h2>
+                    <p>Your answered questions, saved to your account.</p>
+                </div>
+            </div>
+
+            <div class="performance-grid">
+                <article class="performance-card performance-total">
+                    <p>Total Questions Attempted</p>
+                    <strong id="totalAttempted" aria-live="polite">—</strong>
+                </article>
+                <article class="performance-card performance-correct">
+                    <p>Correct Answers</p>
+                    <strong id="correctAnswers" aria-live="polite">—</strong>
+                </article>
+                <article class="performance-card performance-wrong">
+                    <p>Wrong Answers</p>
+                    <strong id="wrongAnswers" aria-live="polite">—</strong>
+                </article>
+            </div>
+        </section>
 
 
         <!-- PRACTICE -->
@@ -443,6 +470,7 @@
 
 
 <!-- DASHBOARD JS -->
+<script src="js/dashboard.js?v=6"></script>
 <script>
 
 (() => {
@@ -498,6 +526,9 @@
 
                 localStorage.removeItem(
                     "aptiprep_user"
+                );
+                localStorage.removeItem(
+                    "aptiprep_token"
                 );
 
                 window.location.href =

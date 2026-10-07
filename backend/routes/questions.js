@@ -401,64 +401,80 @@ router.post("/daily-challenge/answer", authenticateToken, (req, res) => {
 // SAVE PRACTICE ATTEMPT
 // =====================================================
 
-router.post("/practice-attempt", (req, res) => {
+router.post("/practice-attempt", authenticateToken, (req, res) => {
+    const userId = Number(req.user.id);
+    const questionId = Number(req.body.question_id);
+    const selectedAnswer = String(req.body.selected_answer || "")
+        .trim()
+        .toUpperCase();
 
-    const {
-        user_id: userId,
-        company_id: companyId,
-        topic_id: topicId,
-        question_id: questionId,
-        selected_answer: selectedAnswer,
-        is_correct: isCorrect
-    } = req.body;
-
-    if (!userId) {
+    if (!Number.isInteger(questionId) || questionId <= 0 || !/^[ABCD]$/.test(selectedAnswer)) {
         return res.status(400).json({
             success: false,
-            message: "User ID is required"
+            message: "A valid question and selected answer are required."
         });
     }
 
-    const sql = `
-        INSERT INTO practice_attempts (
-            user_id,
-            company_id,
-            topic_id,
-            question_id,
-            selected_answer,
-            is_correct
-        )
-        VALUES (?, ?, ?, ?, ?, ?)
-    `;
-
-    db.run(
-        sql,
-        [
-            userId,
-            companyId || null,
-            topicId || null,
-            questionId || null,
-            selectedAnswer || null,
-            isCorrect ? 1 : 0
-        ],
-        function (err) {
-
-            if (err) {
-                console.error(
-                    "Practice attempt save error:",
-                    err.message
-                );
-
+    db.get(
+        "SELECT company_id, topic_id, correct_answer FROM questions WHERE id = ?",
+        [questionId],
+        (questionError, question) => {
+            if (questionError) {
+                console.error("Practice question lookup error:", questionError.message);
                 return res.status(500).json({
                     success: false,
-                    message: "Unable to save practice attempt"
+                    message: "Unable to validate the selected question."
                 });
             }
 
-            res.status(201).json({
-                success: true,
-                attempt_id: this.lastID
-            });
+            if (!question) {
+                return res.status(404).json({
+                    success: false,
+                    message: "Question not found."
+                });
+            }
+
+            const isCorrect = selectedAnswer === String(question.correct_answer || "")
+                .trim()
+                .toUpperCase();
+            const sql = `
+                INSERT INTO practice_attempts (
+                    user_id,
+                    company_id,
+                    topic_id,
+                    question_id,
+                    selected_answer,
+                    is_correct
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+            `;
+
+            db.run(
+                sql,
+                [
+                    userId,
+                    question.company_id || null,
+                    question.topic_id || null,
+                    questionId,
+                    selectedAnswer,
+                    isCorrect ? 1 : 0
+                ],
+                function (err) {
+                    if (err) {
+                        console.error("Practice attempt save error:", err.message);
+                        return res.status(500).json({
+                            success: false,
+                            message: "Unable to save practice attempt"
+                        });
+                    }
+
+                    res.status(201).json({
+                        success: true,
+                        attempt_id: this.lastID,
+                        is_correct: isCorrect
+                    });
+                }
+            );
         }
     );
 });

@@ -2,6 +2,40 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("../database");
+const authenticateToken = require("../middleware/auth");
+
+router.get("/performance", authenticateToken, (req, res) => {
+    const userId = Number(req.user.id);
+    const sql = `
+        SELECT
+            COUNT(*) AS total_attempted,
+            COALESCE(SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END), 0) AS correct_answers
+        FROM practice_attempts
+        WHERE user_id = ?
+    `;
+
+    db.get(sql, [userId], (err, row) => {
+        if (err) {
+            console.error("Performance statistics error:", err.message);
+            return res.status(500).json({
+                success: false,
+                message: "Unable to load performance statistics."
+            });
+        }
+
+        const totalAttempted = Number(row.total_attempted || 0);
+        const correctAnswers = Number(row.correct_answers || 0);
+
+        res.json({
+            success: true,
+            data: {
+                totalAttempted,
+                correctAnswers,
+                wrongAnswers: totalAttempted - correctAnswers
+            }
+        });
+    });
+});
 
 // =====================================================
 // GET DASHBOARD DATA

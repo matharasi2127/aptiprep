@@ -231,6 +231,54 @@ function submitAnswer(questionIndex) {
 
     showAnswerFeedback(question, questionIndex, answerState);
     renderPagination();
+    savePracticeAttempt(question, userAnswer, isCorrect);
+}
+
+
+async function savePracticeAttempt(question, selectedAnswer, isCorrect) {
+    let user = null;
+    try {
+        user = JSON.parse(localStorage.getItem("aptiprep_user") || "null");
+    } catch {
+        user = null;
+    }
+
+    const userId = user && (user.id || user.user_id || user.userId);
+    const token = localStorage.getItem("aptiprep_token");
+    if (!userId || !token) {
+        console.error("Cannot save attempt: logged-in user or authentication token not found.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/questions/practice-attempt`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                user_id: Number(userId),
+                company_id: question.company_id || null,
+                topic_id: question.topic_id || null,
+                question_id: Number(question.id),
+                selected_answer: selectedAnswer,
+                is_correct: isCorrect
+            })
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to save practice attempt.");
+        }
+
+        localStorage.setItem(
+            "aptiprep_performance_updated",
+            String(Date.now())
+        );
+    } catch (error) {
+        console.error("Practice attempt save error:", error);
+    }
 }
 
 

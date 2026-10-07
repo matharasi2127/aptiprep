@@ -4,6 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
     loadDashboard();
 });
 
+window.addEventListener("storage", event => {
+    if (event.key === "aptiprep_performance_updated") {
+        try {
+            loadPerformanceStats(
+                JSON.parse(localStorage.getItem("aptiprep_user") || "null")
+            );
+        } catch (error) {
+            console.error("Unable to read the logged-in user:", error);
+        }
+    }
+});
+
 async function loadDashboard() {
 
     try {
@@ -31,6 +43,12 @@ async function loadDashboard() {
             loadedWelcomeName.textContent = loadedUserName;
         }
 
+        const loadedHeaderName = document.getElementById("headerUserName");
+        if (loadedHeaderName) {
+            loadedHeaderName.textContent = loadedUserName;
+        }
+
+        await loadPerformanceStats(user);
         return;
 
         const userId =
@@ -134,6 +152,59 @@ async function loadDashboard() {
             "Dashboard loading error:",
             error
         );
+    }
+}
+
+
+async function loadPerformanceStats(user = null) {
+    const token = localStorage.getItem("aptiprep_token");
+    if (!token) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/dashboard/performance`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+            setText("totalAttempted", result.data.totalAttempted);
+            setText("correctAnswers", result.data.correctAnswers);
+            setText("wrongAnswers", result.data.wrongAnswers);
+            return;
+        }
+
+        const userId = user && (user.id || user.user_id || user.userId);
+        if (!userId) {
+            throw new Error(result.message || "Performance stats could not be loaded.");
+        }
+
+        const legacyResponse = await fetch(
+            `${API_URL}/dashboard/${encodeURIComponent(userId)}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+        const legacyResult = await legacyResponse.json();
+
+        if (!legacyResponse.ok || !legacyResult.success) {
+            throw new Error(legacyResult.message || "Performance stats could not be loaded.");
+        }
+
+        const stats = legacyResult.data.stats || {};
+        const totalAttempted = Number(stats.totalAttempts || 0);
+        const correctAnswers = Number(stats.correctAnswers || 0);
+        setText("totalAttempted", totalAttempted);
+        setText("correctAnswers", correctAnswers);
+        setText("wrongAnswers", totalAttempted - correctAnswers);
+    } catch (error) {
+        console.error("Performance statistics loading error:", error);
     }
 }
 

@@ -739,6 +739,50 @@
     gap: 16px;
 }
 
+.performance-section {
+    margin: 28px 0 34px;
+}
+
+.performance-section .section-heading {
+    margin-bottom: 14px;
+}
+
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.performance-card {
+    min-width: 0;
+    padding: 18px 20px;
+    border: 1px solid #e7e9f1;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.performance-card p {
+    margin: 0 0 11px;
+    color: #68738a;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.performance-card strong {
+    display: block;
+    color: #202744;
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+.performance-correct strong {
+    color: #24845c;
+}
+
+.performance-wrong strong {
+    color: #c65353;
+}
+
 
 /* =========================================================
    PRACTICE CARD
@@ -1091,6 +1135,10 @@
             repeat(2, minmax(0, 1fr));
     }
 
+    .performance-grid {
+        gap: 10px;
+    }
+
     .hero-art {
         display: none;
     }
@@ -1301,6 +1349,23 @@
         grid-template-columns: 1fr;
 
         gap: 11px;
+    }
+
+    .performance-section {
+        margin: 23px 0 28px;
+    }
+
+    .performance-grid {
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    .performance-card {
+        padding: 15px 16px;
+    }
+
+    .performance-card strong {
+        font-size: 26px;
     }
 
     .practice-card {

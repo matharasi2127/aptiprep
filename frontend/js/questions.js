@@ -870,8 +870,7 @@ function submitAnswer() {
 
     savePracticeAttempt(
         question,
-        userAnswer,
-        isCorrect
+        userAnswer
     )
     .catch(
         function (error) {
@@ -1044,14 +1043,15 @@ async function savePracticeAttempt(
     isCorrect
 ) {
 
-    const userId =
-        getUserId();
+    const userId = getUserId();
+    const token =
+        localStorage.getItem("aptiprep_token");
 
 
-    if (!userId) {
+    if (!userId || !token) {
 
         console.error(
-            "Cannot save attempt: User ID not found."
+            "Cannot save attempt: logged-in user or authentication token not found."
         );
 
         return;
@@ -1060,34 +1060,16 @@ async function savePracticeAttempt(
 
 
     const attemptData = {
-
-        user_id:
-            Number(userId),
-
-        company_id:
-            question.company_id ||
-            (
-                companyId
-                    ? Number(companyId)
-                    : null
-            ),
-
-        topic_id:
-            question.topic_id ||
-            (
-                topicId
-                    ? Number(topicId)
-                    : null
-            ),
-
+        user_id: Number(userId),
+        company_id: question.company_id || (companyId ? Number(companyId) : null),
+        topic_id: question.topic_id || (topicId ? Number(topicId) : null),
         question_id:
             Number(question.id),
 
         selected_answer:
             selectedAnswerValue,
 
-        is_correct:
-            isCorrect
+        is_correct: isCorrect
 
     };
 
@@ -1111,7 +1093,10 @@ async function savePracticeAttempt(
                     headers: {
 
                         "Content-Type":
-                            "application/json"
+                            "application/json",
+
+                        "Authorization":
+                            `Bearer ${token}`
 
                     },
 
@@ -1147,6 +1132,11 @@ async function savePracticeAttempt(
 
 
         if (data.success) {
+
+            localStorage.setItem(
+                "aptiprep_performance_updated",
+                String(Date.now())
+            );
 
             console.log(
                 "✓ Practice attempt saved successfully."
