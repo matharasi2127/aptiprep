@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             >
                 <div class="topic-icon">${getTopicIcon(index)}</div>
                 <h3>${topic.name}</h3>
-                <p>50 Questions</p>
             </a>
         `).join("");
 

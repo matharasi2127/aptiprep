@@ -54,10 +54,10 @@
             </a>
 
             <div class="quiz-progress-text">
-                Question
-                <span id="currentQuestion">1</span>
+                Questions
+                <span id="questionRange">-</span>
                 of
-                <span id="totalQuestions">10</span>
+                <span id="totalQuestions">0</span>
             </div>
 
         </div>
@@ -106,7 +106,23 @@
 
         <!-- QUESTION CARD -->
 
-        <div id="questionsContainer"></div>
+        <div id="questionsContainer" class="topic-questions"></div>
+
+        <nav id="topicPagination" class="topic-pagination" aria-label="Topic question pages" hidden>
+            <button id="topicPreviousPage" class="topic-page-control" type="button" aria-label="Previous page">
+                Prev
+            </button>
+            <button id="topicRetryPage" class="topic-page-control topic-retry-page" type="button" aria-label="Retry this page" title="Retry this page">
+                ↻
+            </button>
+            <div id="topicPageNumbers" class="topic-page-numbers"></div>
+            <button id="topicNextPage" class="topic-page-control" type="button" aria-label="Next page">
+                Next
+            </button>
+            <button id="topicViewResult" class="topic-page-control topic-view-result" type="button" hidden>
+                View Result
+            </button>
+        </nav>
 
 
     </div>
@@ -116,7 +132,7 @@
 </main>
 
 
-<script src="./js/topic.js?v=2"></script>
+<script src="./js/topic.js?v=3"></script>
 
 <script src="js/theme.js"></script>
 </body>

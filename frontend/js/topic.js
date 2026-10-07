@@ -1,10 +1,10 @@
 const API_URL = "https://aptiprep-1zyu.onrender.com/api";
 
 let questions = [];
-let currentQuestionIndex = 0;
-let selectedAnswer = null;
+const QUESTIONS_PER_PAGE = 10;
+let currentPage = 0;
 let score = 0;
-let answered = false;
+const answerStates = new Map();
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -90,10 +90,11 @@ async function loadQuestions(topicId, companyId) {
             totalQuestions.textContent = questions.length;
         }
 
-        currentQuestionIndex = 0;
+        currentPage = 0;
         score = 0;
 
-        displayQuestion();
+        displayQuestionPage();
+        renderPagination();
 
     } catch (error) {
 
@@ -110,165 +111,88 @@ async function loadQuestions(topicId, companyId) {
 
 
 // =====================================================
-// DISPLAY CURRENT QUESTION
+// DISPLAY CURRENT TOPIC PAGE
 // =====================================================
 
-function displayQuestion() {
-
-    const container =
-        document.getElementById("questionsContainer");
-
+function displayQuestionPage() {
+    const container = document.getElementById("questionsContainer");
     if (!container) return;
 
-    const q =
-        questions[currentQuestionIndex];
+    const firstQuestionIndex = currentPage * QUESTIONS_PER_PAGE;
+    const pageQuestions = questions.slice(
+        firstQuestionIndex,
+        firstQuestionIndex + QUESTIONS_PER_PAGE
+    );
 
-    selectedAnswer = null;
-    answered = false;
+    container.innerHTML = pageQuestions.map((question, pageIndex) => {
+        const questionIndex = firstQuestionIndex + pageIndex;
+        const savedAnswer = answerStates.get(question.id);
+        const selectedAnswer = savedAnswer ? savedAnswer.selectedAnswer : "";
 
-    container.innerHTML = `
+        return `
+            <div class="question-card" data-question-index="${questionIndex}">
+                <div class="question-number">
+                    Question ${questionIndex + 1} / ${questions.length}
+                </div>
 
-        <div class="question-card">
+                <h2 class="question-text">${question.question}</h2>
 
-            <div class="question-number">
-                Question ${currentQuestionIndex + 1}
-                / ${questions.length}
+                <div class="options">
+                    ${["A", "B", "C", "D"].map(option => `
+                        <label class="option">
+                            <input
+                                type="radio"
+                                name="answer-${questionIndex}"
+                                value="${option}"
+                                data-question-index="${questionIndex}"
+                                ${selectedAnswer === option ? "checked" : ""}
+                                ${savedAnswer && savedAnswer.answered ? "disabled" : ""}
+                            >
+                            <span>${option}</span>
+                            ${question[`option_${option.toLowerCase()}`] || ""}
+                        </label>
+                    `).join("")}
+                </div>
+
+                <button
+                    type="button"
+                    class="submit-answer-btn topic-submit-answer"
+                    data-question-index="${questionIndex}"
+                    ${savedAnswer && savedAnswer.answered ? "disabled" : ""}
+                >${savedAnswer && savedAnswer.answered ? "Answer Submitted ✓" : "Submit Answer"}</button>
+
+                <div id="answerResult-${questionIndex}" class="answer-result"></div>
+                <div id="explanationBox-${questionIndex}" class="explanation-box"></div>
             </div>
+        `;
+    }).join("");
 
-            <h2 class="question-text">
-                ${q.question}
-            </h2>
-
-            <div class="options">
-
-                <label class="option">
-                    <input
-                        type="radio"
-                        name="answer"
-                        value="A"
-                    >
-                    <span>A</span>
-                    ${q.option_a}
-                </label>
-
-                <label class="option">
-                    <input
-                        type="radio"
-                        name="answer"
-                        value="B"
-                    >
-                    <span>B</span>
-                    ${q.option_b}
-                </label>
-
-                <label class="option">
-                    <input
-                        type="radio"
-                        name="answer"
-                        value="C"
-                    >
-                    <span>C</span>
-                    ${q.option_c}
-                </label>
-
-                <label class="option">
-                    <input
-                        type="radio"
-                        name="answer"
-                        value="D"
-                    >
-                    <span>D</span>
-                    ${q.option_d}
-                </label>
-
-            </div>
-
-            <button
-                type="button"
-                id="submitAnswerBtn"
-                class="submit-answer-btn"
-            >
-                Submit Answer
-            </button>
-
-            <div
-                id="answerResult"
-                class="answer-result"
-            ></div>
-
-            <div
-                id="explanationBox"
-                class="explanation-box"
-            ></div>
-
-            <button
-                type="button"
-                id="nextQuestionBtn"
-                class="next-question-btn"
-                style="display:none;"
-            >
-                ${
-                    currentQuestionIndex === questions.length - 1
-                    ? "View Result"
-                    : "Next Question →"
-                }
-            </button>
-
-        </div>
-    `;
-
-
-    // =================================================
-    // SELECT ANSWER
-    // =================================================
-
-    const radioButtons =
-        document.querySelectorAll(
-            'input[name="answer"]'
-        );
-
-    radioButtons.forEach(radio => {
-radio.addEventListener("change", (event) => {
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    selectedAnswer = radio.value;
-
-});
-
+    container.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener("change", () => {
+            const question = questions[Number(radio.dataset.questionIndex)];
+            const savedAnswer = answerStates.get(question.id) || {};
+            answerStates.set(question.id, {
+                ...savedAnswer,
+                selectedAnswer: radio.value
+            });
+        });
     });
 
+    container.querySelectorAll(".topic-submit-answer").forEach(button => {
+        button.addEventListener("click", () => {
+            submitAnswer(Number(button.dataset.questionIndex));
+        });
+    });
 
-    // =================================================
-    // SUBMIT ANSWER
-    // =================================================
+    pageQuestions.forEach((question, pageIndex) => {
+        const questionIndex = firstQuestionIndex + pageIndex;
+        const savedAnswer = answerStates.get(question.id);
+        if (savedAnswer && savedAnswer.answered) {
+            showAnswerFeedback(question, questionIndex, savedAnswer);
+        }
+    });
 
-    const submitButton =
-        document.getElementById(
-            "submitAnswerBtn"
-        );
-
-   submitButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    submitAnswer(event);
-});
-
-
-    // =================================================
-    // NEXT QUESTION
-    // =================================================
-
-    const nextButton =
-        document.getElementById(
-            "nextQuestionBtn"
-        );
-
-    nextButton.addEventListener(
-        "click",
-        goToNextQuestion
-    );
+    updateQuestionRange();
 }
 
 
@@ -276,59 +200,49 @@ radio.addEventListener("change", (event) => {
 // SUBMIT ANSWER FUNCTION
 // =====================================================
 
-function submitAnswer(event) {
+function submitAnswer(questionIndex) {
+    const question = questions[questionIndex];
+    const answerState = question && answerStates.get(question.id);
 
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+    if (!question || !answerState || answerState.answered) return;
 
-    if (answered) {
-        return;
-    }
-
-    if (!selectedAnswer) {
+    if (!answerState.selectedAnswer) {
         alert("Please select an answer first.");
         return;
     }
 
-    const q = questions[currentQuestionIndex];
-
-    if (!q) {
-        console.error("Current question not found.");
-        return;
-    }
-
-    answered = true;
-
-    const submitButton = document.getElementById("submitAnswerBtn");
-    const result = document.getElementById("answerResult");
-    const explanationBox = document.getElementById("explanationBox");
-    const nextButton = document.getElementById("nextQuestionBtn");
-
-    const correctAnswer = String(q.correct_answer || "")
+    const correctAnswer = String(question.correct_answer || "")
         .trim()
         .toUpperCase();
-
-    const userAnswer = String(selectedAnswer)
+    const userAnswer = String(answerState.selectedAnswer)
         .trim()
         .toUpperCase();
-
     const isCorrect = userAnswer === correctAnswer;
 
-    if (isCorrect) {
-        score++;
-    }
+    answerState.answered = true;
+    answerState.isCorrect = isCorrect;
+    answerStates.set(question.id, answerState);
 
-    // Show score
+    score = Array.from(answerStates.values())
+        .filter(answer => answer.answered && answer.isCorrect).length;
+
     const scoreElement = document.getElementById("score");
-    if (scoreElement) {
-        scoreElement.textContent = score;
-    }
+    if (scoreElement) scoreElement.textContent = score;
 
-    // Show correct/wrong answer
+    showAnswerFeedback(question, questionIndex, answerState);
+    renderPagination();
+}
+
+
+function showAnswerFeedback(question, questionIndex, answerState) {
+    const result = document.getElementById(`answerResult-${questionIndex}`);
+    const explanationBox = document.getElementById(`explanationBox-${questionIndex}`);
+    const correctAnswer = String(question.correct_answer || "")
+        .trim()
+        .toUpperCase();
+
     if (result) {
-        result.innerHTML = isCorrect
+        result.innerHTML = answerState.isCorrect
             ? '<div class="correct-message">✓ Correct Answer!</div>'
             : `<div class="wrong-message">
                    ✗ Wrong Answer<br><br>
@@ -336,72 +250,125 @@ function submitAnswer(event) {
                </div>`;
     }
 
-    // Show explanation
     if (explanationBox) {
         explanationBox.innerHTML = `
             <div class="explanation-title">💡 Explanation</div>
-            <p>${q.explanation || "Explanation is not available."}</p>
-            ${q.source ? `<small>Source: ${q.source}</small>` : ""}
+            <p>${question.explanation || "Explanation is not available."}</p>
+            ${question.source ? `<small>Source: ${question.source}</small>` : ""}
         `;
-
         explanationBox.style.display = "block";
     }
-
-    // Disable options after submission
-    document.querySelectorAll('input[name="answer"]').forEach(input => {
-        input.disabled = true;
-    });
-
-    // Update Submit button
-    if (submitButton) {
-        submitButton.disabled = true;
-        submitButton.textContent = "Answer Submitted ✓";
-    }
-
-    // Show Next Question / View Result button
-    if (nextButton) {
-        nextButton.style.display = "inline-block";
-        nextButton.disabled = false;
-        nextButton.textContent =
-            currentQuestionIndex === questions.length - 1
-                ? "View Result"
-                : "Next Question →";
-    }
-
-    console.log("Answer checked:", {
-        questionId: q.id,
-        selectedAnswer: userAnswer,
-        correctAnswer,
-        isCorrect,
-        score
-    });
 }
 
 
-// =====================================================
-// NEXT QUESTION
-// =====================================================
+function updateQuestionRange() {
+    const rangeElement = document.getElementById("questionRange");
+    if (!rangeElement || questions.length === 0) return;
 
-function goToNextQuestion() {
-
-    if (!answered) {
-        alert("Please submit your answer first.");
-        return;
-    }
-
-    currentQuestionIndex++;
-
-    if (
-        currentQuestionIndex >=
+    const firstQuestion = currentPage * QUESTIONS_PER_PAGE + 1;
+    const lastQuestion = Math.min(
+        firstQuestion + QUESTIONS_PER_PAGE - 1,
         questions.length
-    ) {
+    );
 
-        showFinalResult();
+    rangeElement.textContent = `${firstQuestion}-${lastQuestion}`;
 
-        return;
+    const progressBar = document.getElementById("progressBar");
+    if (progressBar) {
+        const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+        progressBar.style.width = `${((currentPage + 1) / totalPages) * 100}%`;
+    }
+}
+
+
+function renderPagination() {
+    const pagination = document.getElementById("topicPagination");
+    const pageNumbers = document.getElementById("topicPageNumbers");
+    if (!pagination || !pageNumbers) return;
+
+    const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+    pagination.hidden = questions.length === 0;
+
+    document.getElementById("topicPreviousPage").disabled = currentPage === 0;
+    document.getElementById("topicNextPage").disabled = currentPage >= totalPages - 1;
+
+    const pages = getVisiblePages(currentPage + 1, totalPages);
+    pageNumbers.innerHTML = pages.map(page => page === "..."
+        ? '<span class="topic-page-ellipsis" aria-hidden="true">...</span>'
+        : `<button
+                type="button"
+                class="topic-page-number${page === currentPage + 1 ? " is-active" : ""}"
+                data-page="${page}"
+                aria-label="Page ${page}"
+                aria-current="${page === currentPage + 1 ? "page" : "false"}"
+            >${page}</button>`
+    ).join("");
+
+    pageNumbers.querySelectorAll(".topic-page-number").forEach(button => {
+        button.addEventListener("click", () => {
+            changePage(Number(button.dataset.page) - 1);
+        });
+    });
+
+    document.getElementById("topicPreviousPage").onclick = () => {
+        if (currentPage > 0) changePage(currentPage - 1);
+    };
+
+    document.getElementById("topicNextPage").onclick = () => {
+        if (currentPage < totalPages - 1) changePage(currentPage + 1);
+    };
+
+    const allQuestionsAnswered = questions.every(question => {
+        const answer = answerStates.get(question.id);
+        return answer && answer.answered;
+    });
+    const viewResultButton = document.getElementById("topicViewResult");
+    viewResultButton.hidden = !allQuestionsAnswered;
+    viewResultButton.onclick = showFinalResult;
+
+    document.getElementById("topicRetryPage").onclick = () => {
+        const firstQuestionIndex = currentPage * QUESTIONS_PER_PAGE;
+        const pageQuestions = questions.slice(
+            firstQuestionIndex,
+            firstQuestionIndex + QUESTIONS_PER_PAGE
+        );
+        pageQuestions.forEach(question => answerStates.delete(question.id));
+        score = Array.from(answerStates.values())
+            .filter(answer => answer.answered && answer.isCorrect).length;
+
+        const scoreElement = document.getElementById("score");
+        if (scoreElement) scoreElement.textContent = score;
+        displayQuestionPage();
+        renderPagination();
+    };
+}
+
+
+function getVisiblePages(current, total) {
+    if (total <= 5) {
+        return Array.from({ length: total }, (_, index) => index + 1);
     }
 
-    displayQuestion();
+    if (current <= 3) return [1, 2, 3, "...", total];
+    if (current >= total - 2) {
+        return [1, "...", total - 2, total - 1, total];
+    }
+
+    return [1, "...", current - 1, current, current + 1, "...", total];
+}
+
+
+function changePage(pageIndex) {
+    const totalPages = Math.ceil(questions.length / QUESTIONS_PER_PAGE);
+    if (pageIndex < 0 || pageIndex >= totalPages || pageIndex === currentPage) return;
+
+    currentPage = pageIndex;
+    displayQuestionPage();
+    renderPagination();
+    document.getElementById("questionsContainer").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
 }
 
 
@@ -412,6 +379,7 @@ function goToNextQuestion() {
 function showFinalResult() {
 
     const total = questions.length;
+    document.getElementById("topicPagination").hidden = true;
 
     const percentage =
         Math.round(
