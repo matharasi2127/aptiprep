@@ -172,9 +172,7 @@ async function loadPerformanceStats(user = null) {
         const result = await response.json();
 
         if (response.ok && result.success) {
-            setText("totalAttempted", result.data.totalAttempted);
-            setText("correctAnswers", result.data.correctAnswers);
-            setText("wrongAnswers", result.data.wrongAnswers);
+            renderPerformanceStats(result.data);
             return;
         }
 
@@ -200,12 +198,39 @@ async function loadPerformanceStats(user = null) {
         const stats = legacyResult.data.stats || {};
         const totalAttempted = Number(stats.totalAttempts || 0);
         const correctAnswers = Number(stats.correctAnswers || 0);
-        setText("totalAttempted", totalAttempted);
-        setText("correctAnswers", correctAnswers);
-        setText("wrongAnswers", totalAttempted - correctAnswers);
+        renderPerformanceStats({
+            totalAttempted,
+            correctAnswers,
+            wrongAnswers: totalAttempted - correctAnswers
+        });
     } catch (error) {
         console.error("Performance statistics loading error:", error);
     }
+}
+
+
+function renderPerformanceStats(stats) {
+    const totalAttempted = Number(stats.totalAttempted || 0);
+    const correctAnswers = Number(stats.correctAnswers || 0);
+    const wrongAnswers = Number(stats.wrongAnswers || 0);
+
+    setText("totalAttempted", totalAttempted);
+    setText("correctAnswers", correctAnswers);
+    setText("wrongAnswers", wrongAnswers);
+
+    const chart = document.getElementById("performanceChart");
+    if (!chart) return;
+
+    const correctShare = totalAttempted > 0
+        ? (correctAnswers / totalAttempted) * 100
+        : 0;
+
+    chart.style.setProperty("--correct-share", `${correctShare}%`);
+    chart.dataset.empty = totalAttempted === 0 ? "true" : "false";
+    chart.setAttribute(
+        "aria-label",
+        `Performance: ${correctAnswers} correct and ${wrongAnswers} wrong out of ${totalAttempted} attempted`
+    );
 }
 
 

@@ -8,7 +8,7 @@
     <title>Dashboard | AptiPrep</title>
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/dashboard.css?v=5">
+    <link rel="stylesheet" href="css/dashboard.css?v=6">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 
@@ -220,19 +220,37 @@
                 </div>
             </div>
 
-            <div class="performance-grid">
-                <article class="performance-card performance-total">
-                    <p>Total Questions Attempted</p>
-                    <strong id="totalAttempted" aria-live="polite">—</strong>
-                </article>
-                <article class="performance-card performance-correct">
-                    <p>Correct Answers</p>
-                    <strong id="correctAnswers" aria-live="polite">—</strong>
-                </article>
-                <article class="performance-card performance-wrong">
-                    <p>Wrong Answers</p>
-                    <strong id="wrongAnswers" aria-live="polite">—</strong>
-                </article>
+            <div class="performance-visualization">
+                <div
+                    id="performanceChart"
+                    class="performance-donut"
+                    role="img"
+                    aria-label="Performance chart"
+                    data-empty="true"
+                    style="--correct-share: 0%;"
+                >
+                    <div class="performance-donut-center">
+                        <strong id="totalAttempted" aria-live="polite">—</strong>
+                        <span>Total Attempted</span>
+                    </div>
+                </div>
+
+                <div class="performance-legend">
+                    <div class="performance-legend-item">
+                        <span class="performance-legend-label">
+                            <span class="performance-legend-dot correct-dot"></span>
+                            Correct Answers
+                        </span>
+                        <strong id="correctAnswers" aria-live="polite">—</strong>
+                    </div>
+                    <div class="performance-legend-item">
+                        <span class="performance-legend-label">
+                            <span class="performance-legend-dot wrong-dot"></span>
+                            Wrong Answers
+                        </span>
+                        <strong id="wrongAnswers" aria-live="polite">—</strong>
+                    </div>
+                </div>
             </div>
         </section>
 
