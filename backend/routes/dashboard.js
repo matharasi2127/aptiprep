@@ -41,14 +41,21 @@ router.get("/performance", authenticateToken, (req, res) => {
 // GET DASHBOARD DATA
 // =====================================================
 
-router.get("/:userId", (req, res) => {
+router.get("/:userId", authenticateToken, (req, res) => {
 
     const userId = Number(req.params.userId);
 
-    if (!userId) {
+    if (!Number.isInteger(userId) || userId <= 0) {
         return res.status(400).json({
             success: false,
             message: "Invalid user ID."
+        });
+    }
+
+    if (userId !== Number(req.user.id)) {
+        return res.status(403).json({
+            success: false,
+            message: "You can only access your own dashboard."
         });
     }
 

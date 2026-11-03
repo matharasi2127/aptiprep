@@ -1,11 +1,16 @@
 const sqlite3 = require("sqlite3").verbose();
+const path = require("path");
+
+const databasePath = process.env.DATABASE_PATH
+    ? path.resolve(process.env.DATABASE_PATH)
+    : path.join(__dirname, "aptiprep.db");
 
 
 // ======================================================
 // DATABASE CONNECTION
 // ======================================================
 
-const db = new sqlite3.Database("./aptiprep.db", (err) => {
+const db = new sqlite3.Database(databasePath, (err) => {
 
     if (err) {
         console.error(
@@ -14,7 +19,7 @@ const db = new sqlite3.Database("./aptiprep.db", (err) => {
         );
     } else {
         console.log(
-            "AptiPrep database connected successfully!"
+            `AptiPrep database connected successfully: ${databasePath}`
         );
     }
 

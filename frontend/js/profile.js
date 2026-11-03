@@ -67,7 +67,7 @@ async function saveProfile(event) {
 		const storedUser = JSON.parse(localStorage.getItem("aptiprep_user") || "{}");
 		storedUser.name = name;
 		localStorage.setItem("aptiprep_user", JSON.stringify(storedUser));
-		showMessage("profileMessage", "Profile saved successfully.");
+		showMessage("profileMessage", "Profile updated successfully.");
 	} catch (error) {
 		showMessage("profileError", error.message);
 	} finally {
